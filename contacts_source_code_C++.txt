@@ -1,0 +1,215 @@
+#include <iostream>
+using namespace std;
+main()
+{
+    char r='a';
+    int x,mobile,mobile2;
+    int number[200]={0};
+    int y=0,u=0, i=0, D=1;
+    string names[199];
+    string names2[199];
+    string NN,NN2;
+
+    while(r!='f'&&r!='F'){  //To Exit Or Back to Menu
+    D=1;
+    cout<<"\n****************************\n>> Select What You Want <<\n**************************** \n\n";
+    cout<<"****************************\n1.Add Mobile Number.\n****************************\n2.Search For Mobile Number.\n****************************\n3.Delete Mobile Number.\n****************************\n4.List Of The Numbers\n****************************"<<endl;
+    cin>>x;
+
+    if(x==1){ //ADD NUMBER
+        cout<<"\nPlease enter the mobile number: "<<endl;
+        cin>>mobile;
+        bool o=0;
+        int h=0;
+        D=1;
+
+        for( ; h<200; h++){
+            if(number[h]==mobile)
+            o=1;
+        }
+
+        switch(mobile>=1&&o==0){  // Correct Number
+            case 1:
+                while(i<200){
+                ++i;
+                break;
+                }
+
+            for( ; i<200; ){
+                number[i-1]=mobile;
+                cout<<"\nEnter the first and second name only: "<<endl;
+                cin>>names[i-1];
+                cin>>names2[i-1];
+
+                    for(int m=0; m<200; m++){ // to repeat Numbers
+
+                            if(number[m]==0){  // Arrangement Names after adding
+                            names[m]={""};
+                            names[m]+=names[m+1];
+                            names2[m]="";
+                            names2[m]+=names2[m+1];
+                            break;
+                            }
+
+                            if(number[m]==0){ //Arrangement Numbers after adding
+                            number[200]=0;
+                            number[m]=number[m+1];
+                            number[m+1]=0;
+
+                        }
+                    }
+                break;
+            }
+
+        cout<<"\n**********************************\n>>Mobile number has been saved!<<\n**********************************"<<endl;;
+        cout<<"Enter (11) to add new number,(r/R) to main menu, (f/F) to exit"<<endl;
+        cin>>r;
+        break;
+
+        case 0: //non-correct Number
+           switch(mobile!=0){ // Already exists
+            case 1:
+            cout<<"\n***************************"<<endl;
+            cout<<"This number Already exists!\a\a"<<endl;
+            cout<<"***************************"<<endl;
+            cout<<"Enter (11) to add new number,(r/R) to main menu, (f/F) to exit"<<endl;
+            cin>>r;
+            break;
+
+
+            case 0: //Not Valid Number
+            cout<<"\n**********************************\nPlease Enter Valid Mobile Number!!\a\a\n**********************************"<<endl;
+            cout<<"Enter (11) to add new number,(r/R) to main menu, (f/F) to exit"<<endl;
+            cin>>r;
+            break;
+           }
+
+        }
+
+    }
+
+    if(x==2){ // Search For Number
+        int ch;
+        cout<<"\n***************\n";
+        cout<<">> Search by <<\n***************\n\n***************\n1.Mobile number\n***************\n2.Name\n***************"<<endl;
+        cin>>ch;
+
+        if(ch==1){  //search by number
+        cout<<"\nPlease enter the mobile number: "<<endl;
+        cin>>mobile;
+        y=0;
+
+            for(int j=0; j<200; j++){
+                if(number[j]==mobile){
+                    y=1;
+                    cout<<"\n*******************************************************************";
+                    cout<<"\nThe Mobile Number: ( "<<number[j]<<" ) is founded whit name: ( "<<names[j]<<" "<<names2[j]<<" )\n";
+                    cout<<"*******************************************************************"<<endl;
+                    cout<<"Enter (12) to Search again,(r/R) to main menu, (f/F) to exit"<<endl;
+                    cin>>r;
+                    break;
+                }
+            }
+                if(y==0){
+                    cout<<"\n*********************************************";
+                    cout<<"\nThe Mobile Number: ( "<<mobile<<" ) is not founded\a\a"<<"\n";
+                    cout<<"*********************************************"<<endl;
+                    cout<<"Enter (12) to Search again,(r/R) to main menu, (f/F) to exit"<<endl;
+                    cin>>r;
+                    }
+        }
+        if(ch==2){ // search by name
+            string name;
+            bool e=0;
+            cout<<"\n*********************************\n";
+            cout<<"Please enter the first name only: "<<endl;
+            cout<<"*********************************\n";
+            cin>>name;
+
+
+                for(int j=0; j<199; j++){ // To Know how many repeat the names
+                        if(name==names[j]){
+                    cout<<"\n*******************************************************************";
+                    cout<<"\nThe Mobile Number: ( "<<number[j]<<" ) is founded whit name: ( "<<names[j]<<" "<<names2[j]<<" )\n";
+                    cout<<"*******************************************************************"<<endl;
+                    e=1;
+                }
+            }
+
+                if(e==1){
+                    cout<<"Enter (12) to Search again,(r/R) to main menu, (f/F) to exit"<<endl;
+                    cin>>r;
+                }
+
+                if(e==0){
+
+                    cout<<"\n***************************************";
+                    cout<<"\nThe Name: ( "<<name<<" ) is not founded\a\a"<<"\n";
+                    cout<<"***************************************"<<endl;
+                    cout<<"Enter (12) to Search again,(r/R) to main menu, (f/F) to exit"<<endl;
+                    cin>>r;
+                    }
+        }
+    }
+
+        if(x==3){ //DELETE NUMBER
+            cout<<"\nPlease enter the mobile number: "<<endl;
+            cin>>mobile;
+            mobile2=mobile;
+            u=0;
+            D=1;
+                for(int i=0; i<200; i++){
+                    if(number[i]==mobile){
+                        u=1;
+                        number[i]=0;
+                        NN=names[i];
+                        NN2=names2[i];
+
+                            names[i]={""};      // To arrangement names after delete
+                            names[i]=names[i+1];
+                            names2[i]={""};
+                            names2[i]=names2[i+1];
+
+                            number[200]=0;     // To arrangement numbers after delete
+                            number[i]=number[i+1];
+                            number[i+1]=0;
+                            number[200]=0;
+
+                        cout<<"\n**********************************************************************";
+                        cout<<"\nThe mobile number: ( "<<mobile2<<" ) with name: ( "<<NN<<" "<<NN2<<" ) is Deleted\a\a"<<endl;
+                        cout<<"**********************************************************************"<<endl;
+                        cout<<"Enter (13) to Delete another number,(r/R) to main menu, (f/F) to exit"<<endl;
+                        cin>>r;
+                        break;
+                    }
+                }
+
+                    if(u==0){
+                        cout<<"\n*******************************************";
+                        cout<<"\nThe mobile number: ( "<<mobile2<<" ) is not Found\a\a"<<endl;
+                        cout<<"*******************************************"<<endl;
+                        cout<<"Enter (13) to Delete numbers,(r/R) to main menu, (f/F) to exit"<<endl;
+                        cin>>r;
+                    }
+        }
+        if(x==4){ //Display numbers
+
+                cout<<"\n\n********** Saved Numbers ***********\n";
+            for(int j=0; j<200; j++){
+
+                while(number[j]!=0){
+
+                    cout<<"************************************"<<endl;
+                    cout<<D<<"|  "<<number[j]<<" | "<<names[j]<<" "<<names2[j]<<endl;
+                    ++D;
+                    break;
+                }
+
+            }
+                    cout<<"************************************"<<endl;
+                    cout<<"Enter (r/R) to main menu, (f/F) to exit"<<endl;
+                    cin>>r;
+        }
+    }
+    cout<<"******** Thank You *********"<<endl;
+}
